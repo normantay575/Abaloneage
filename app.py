@@ -19,19 +19,19 @@ Height = request.form.get('height')
      
      ####################### FROM AUTOAI DEPLOYMENT API ####################### 
      # NOTE: you must manually set API_KEY below using information retrieved from your IBM Cloud account. 
-     API_KEY = "SJCNXjk0C3mwp7gYd3eaoFPaeg1sFH9r7AwPQyhwdCA9" 
-     token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey": 
-      API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'}) 
-     mltoken = token_response.json()["access_token"] 
+API_KEY = "SJCNXjk0C3mwp7gYd3eaoFPaeg1sFH9r7AwPQyhwdCA9" 
+token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey": 
+API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'}) 
+mltoken = token_response.json()["access_token"] 
   
-     header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + mltoken} 
+header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + mltoken} 
   
      #Length = input('Enter Length') 
      #Diameter = input('Enter Diameter') 
      #Height = input('Enter Height') 
   
      # NOTE: manually define and pass the array(s) of values to be scored in the next line 
-     payload_scoring = {"input_data": [{"fields": [ 
+payload_scoring = {"input_data": [{"fields": [ 
                      "Sex", 
                      "Length", 
                      "Diameter", 
@@ -42,36 +42,35 @@ Height = request.form.get('height')
                      "Shell weight", 
                      "Rings"], 
          "values": [[ 
-  
-                     None, 
-                     Length, 
-                     Diameter, 
-                     Height, 
-                     None, 
-                     None, 
-                     None, 
-                     None, 
-                     None 
+None, 
+Length, 
+Diameter, 
+Height, 
+None, 
+None, 
+None, 
+None, 
+None 
                       ]] 
          }]} 
   
-     response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/c258bae8-1c4e-4341-9462-9f2548c369e1/predictions?version=2022-07-07', json=payload_scoring, 
-      headers={'Authorization': 'Bearer ' + mltoken}) 
-     print("Scoring response") 
-     print(response_scoring.json()) 
+response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/c258bae8-1c4e-4341-9462-9f2548c369e1/predictions?version=2022-07-07', json=payload_scoring, 
+headers={'Authorization': 'Bearer ' + mltoken}) 
+print("Scoring response") 
+print(response_scoring.json()) 
      ####################### END OF AUTOAI DEPLOYMENT API ####################### 
   
-     return render_template('index.html', prediction_text='Abalone age Prediction is $ {}'.format(response_scoring.json())) 
+return render_template('index.html', prediction_text='Abalone age Prediction is $ {}'.format(response_scoring.json())) 
   
- @app.route('/results',methods=['POST']) 
- def results(): 
+@app.route('/results',methods=['POST']) 
+def results(): 
   
-     data = request.get_json(force=True) 
-     prediction = model.predict([np.array(list(data.values()))]) 
+data = request.get_json(force=True) 
+prediction = model.predict([np.array(list(data.values()))]) 
   
-     output = prediction[0] 
-     return jsonify(output) 
+output = prediction[0] 
+return jsonify(output) 
   
- if _name_ == "_main_": 
-     #app.run(host='0.0.0.0', port=8080) 
-     app.run()
+if _name_ == "_main_": 
+#app.run(host='0.0.0.0', port=8080) 
+app.run()
