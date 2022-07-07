@@ -1,21 +1,21 @@
 from flask import Flask, request, jsonify, render_template 
- import numpy as np 
- #import pickle 
- import requests 
+import numpy as np 
+#import pickle 
+import requests 
   
- app = Flask(_name_) 
+app = Flask(_name_) 
   
- @app.route('/') 
- def home(): 
-     return render_template('index.html') 
+@app.route('/') 
+def home(): 
+return render_template('index.html') 
   
- @app.route('/predict',methods=['POST']) 
- def predict(): 
-     Length = request.form.get('length') 
-     Diameter = request.form.get('diameter') 
-     Height = request.form.get('height') 
+@app.route('/predict',methods=['POST']) 
+def predict(): 
+Length = request.form.get('length') 
+Diameter = request.form.get('diameter') 
+Height = request.form.get('height') 
           
-     #output = round(prediction[0], 2)     
+#output = round(prediction[0], 2)     
      
      ####################### FROM AUTOAI DEPLOYMENT API ####################### 
      # NOTE: you must manually set API_KEY below using information retrieved from your IBM Cloud account. 
