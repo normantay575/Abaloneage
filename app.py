@@ -1,9 +1,33 @@
-from flask import Flask, request, jsonify, render_template
+[5:44 PM, 7/7/2022] TripleAs: <html >
+<head>  
+  <title>AutoAI Flask Deployment Tutorial</title>
+</head>
+
+<body>
+ <div class="login">
+	<h1>Loan Risk Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="duration" placeholder="Enter Duration" required="required" /> </br> </br>
+        <input type="text" name="amount" placeholder="Enter Amount" required="required" /> </br> </br>
+	<input type="text" name="age" placeholder="Enter Age" required="required" /> </br> </br>
+        <button type="submit"> Predict Risk </button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+</body>
+</html>
+[5:52 PM, 7/7/2022] TripleAs: from flask import Flask, request, jsonify, render_template
 import numpy as np
 #import pickle
 import requests
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 @app.route('/')
 def home():
@@ -40,7 +64,7 @@ def predict():
                     "Shucked weight",
                     "Viscera weight",
                     "Shell weight",
-                    "Rings",
+                    "Rings"],
        
         
                     
@@ -54,7 +78,7 @@ def predict():
                     None,
                     None,
                     None,
-                    None,
+                    None]]
                     
         }]}
 
@@ -87,6 +111,6 @@ def results():
     output = prediction[0]
     return jsonify(output)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     #app.run(host='0.0.0.0', port=8080)
     app.run()
