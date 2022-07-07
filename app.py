@@ -11,9 +11,9 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    LoanDuration = request.form.get('duration')
-    LoanAmount = request.form.get('amount')
-    Age = request.form.get('age')
+    Length = request.form.get('length')
+    Diameter = request.form.get('diameter')
+    Height = request.form.get('height')
         
     #output = round(prediction[0], 2)    
    
@@ -41,7 +41,7 @@ def predict():
                     "Viscera weight",
                     "Shell weight",
                     "Rings",
-     
+        }]}
         
                     
         "values": [[
@@ -64,7 +64,7 @@ def predict():
     print(response_scoring.json())
     ####################### END OF AUTOAI DEPLOYMENT API #######################
 
-    return render_template('index.html', prediction_text='Number of Rings is $ {}'.format(response_scoring.json()))
+    return render_template('index.html', prediction_text='Abalone age is $ {}'.format(response_scoring.json()))
 
 @app.route('/results',methods=['POST'])
 def results():
