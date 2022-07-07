@@ -41,7 +41,7 @@ def predict():
                     "Viscera weight",
                     "Shell weight",
                     "Rings",
-        }]}
+       
         
                     
         "values": [[
