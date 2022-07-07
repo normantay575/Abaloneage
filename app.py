@@ -47,25 +47,15 @@ def predict():
         "values": [[
 
                     None,
-                    LoanDuration,
-                    None,
-                    None,
-                    LoanAmount,
-                    None,
-                    None,
+                    Length,
+                    Diameter,
+                    Height,
                     None,
                     None,
                     None,
                     None,
                     None,
-                    Age,
-                    None,
-                    None,
-                    None,
-                    None,
-                    None,
-                    None,
-                    None ]]
+                    
         }]}
 
     response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/c258bae8-1c4e-4341-9462-9f2548c369e1/predictions?version=2022-07-07', json=payload_scoring,
