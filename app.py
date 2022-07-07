@@ -1,28 +1,4 @@
-[5:44 PM, 7/7/2022] TripleAs: <html >
-<head>  
-  <title>AutoAI Flask Deployment Tutorial</title>
-</head>
-
-<body>
- <div class="login">
-	<h1>Loan Risk Prediction</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="duration" placeholder="Enter Duration" required="required" /> </br> </br>
-        <input type="text" name="amount" placeholder="Enter Amount" required="required" /> </br> </br>
-	<input type="text" name="age" placeholder="Enter Age" required="required" /> </br> </br>
-        <button type="submit"> Predict Risk </button>
-    </form>
-
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-</body>
-</html>
-[5:52 PM, 7/7/2022] TripleAs: from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 import numpy as np
 #import pickle
 import requests
@@ -31,7 +7,7 @@ app = Flask(_name_)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
