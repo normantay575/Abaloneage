@@ -32,26 +32,18 @@ def predict():
 
     # NOTE: manually define and pass the array(s) of values to be scored in the next line
     payload_scoring = {"input_data": [{"fields": [
-                    "CheckingStatus",
-                    "LoanDuration",
-                    "CreditHistory",
-                    "LoanPurpose",
-                    "LoanAmount",
-                    "ExistingSavings",
-                    "EmploymentDuration",
-                    "InstallmentPercent",
                     "Sex",
-                    "OthersOnLoan",
-                    "CurrentResidenceDuration",
-                    "OwnsProperty",
-                    "Age",
-                    "InstallmentPlans",
-                    "Housing",
-                    "ExistingCreditsCount",
-                    "Job",
-                    "Dependents",
-                    "Telephone",
-                    "ForeignWorker"],
+                    "Length",
+                    "Diameter",
+                    "Height",
+                    "Whole weight",
+                    "Shucked weight",
+                    "Viscera weight",
+                    "Shell weight",
+                    "Rings",
+     
+        
+                    
         "values": [[
 
                     None,
@@ -76,13 +68,13 @@ def predict():
                     None ]]
         }]}
 
-    response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/7a871bb8-b73b-4099-b4b5-34ff8a331883/predictions?version=2022-06-30', json=payload_scoring,
-     headers={'Authorization': 'Bearer ' + mltoken})
+    response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/c258bae8-1c4e-4341-9462-9f2548c369e1/predictions?version=2022-07-07', json=payload_scoring,
+ headers={'Authorization': 'Bearer ' + mltoken})
     print("Scoring response")
     print(response_scoring.json())
     ####################### END OF AUTOAI DEPLOYMENT API #######################
 
-    return render_template('index.html', prediction_text='Loan Risk Prediction is $ {}'.format(response_scoring.json()))
+    return render_template('index.html', prediction_text='Number of Rings is $ {}'.format(response_scoring.json()))
 
 @app.route('/results',methods=['POST'])
 def results():
